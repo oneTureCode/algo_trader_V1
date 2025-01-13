@@ -5,8 +5,8 @@ import os
 import pandas as pd
 from data_handler import load_data
 from datetime import datetime
-#import strategies
-from strategies import *
+import strategies
+#from strategies import *
 #import strategies.SampleStrategy
 
 class Backtester:
