@@ -1,0 +1,14 @@
+numpy
+pandas
+backtrader
+ccxt
+matplotlib
+seaborn
+streamlit
+plotly
+tqdm
+requests
+SQLAlchemy
+python-dateutil
+scikit-learn
+jupyter
