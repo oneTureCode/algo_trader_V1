@@ -14,8 +14,6 @@ APIS = {
     },
 }
 
-
-
 # Email Notifications (Optional)
 EMAIL_NOTIFICATIONS = {
     "enabled": False,
