@@ -104,14 +104,14 @@ class Backtester:
 
 if __name__ == "__main__":
     # Define pairs and timeframes
-    symbols = ["BTC/USDT", "ETH/USDT"]
-    timeframes = ["15m", "1h"]
+    symbols = ["BTC/USDT","XRP_USDT"]
+    timeframes = ["15m"]
 
     # Specify the strategy class name (e.g., 'SampleStrategy')
-    strategy_name = "SampleStrategy"
+    strategy_name = "QuickFlipStrategy"
 
     # Initialize backtester
-    backtester = Backtester(strategy_name=strategy_name, cash=1000, commission=0.001)
+    backtester = Backtester(strategy_name=strategy_name, cash=1000, commission=0.003)
 
     # Add data and configure
     backtester.add_data(symbols, timeframes)

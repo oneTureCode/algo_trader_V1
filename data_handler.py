@@ -354,7 +354,7 @@ if __name__ == "__main__":
     )
 """
     # Step 4: Fetch and save historical data for selected symbols
-    timeframe = '1m'  # Example timeframe
+    timeframe = '15m'  # Example timeframe
    
     selected_symbols = [
     "BTC/USDT", "ETH/USDT", "BNB/USDT", "SOL/USDT", "XRP/USDT"
