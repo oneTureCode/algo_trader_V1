@@ -5,16 +5,46 @@ import os
 import pandas as pd
 from data_handler import load_data
 from datetime import datetime
-import strategies
-#from strategies import *
-#import strategies.SampleStrategy
+import importlib.util
+import sys
 
 class Backtester:
-    def __init__(self, strategy, cash=1000, commission=0.001):
-        self.strategy = strategy
+    def __init__(self, strategy_name, cash=1000, commission=0.001):
+        """
+        Initializes the backtester with a dynamic strategy class.
+        :param strategy_name: The name of the strategy class to load (e.g., 'SampleStrategy').
+        :param cash: The starting cash for the backtest.
+        :param commission: The commission for trades.
+        """
+        self.strategy_name = strategy_name
         self.cash = cash
         self.commission = commission
         self.cerebro = bt.Cerebro()
+        self.strategy = self.load_strategy(strategy_name)
+
+    @staticmethod
+    def load_strategy(strategy_name):
+        """
+        Dynamically load a strategy class from the strategies folder.
+        :param strategy_name: The name of the strategy class to load.
+        :return: The strategy class.
+        """
+        strategies_folder = "strategies"
+        for file in os.listdir(strategies_folder):
+            if file.endswith(".py") and not file.startswith("__"):
+                module_name = file[:-3]
+                module_path = os.path.join(strategies_folder, file)
+                spec = importlib.util.spec_from_file_location(module_name, module_path)
+                module = importlib.util.module_from_spec(spec)
+                spec.loader.exec_module(module)
+
+                # Add the module to sys.modules so Backtrader can find it
+                sys.modules[module_name] = module
+
+                if hasattr(module, strategy_name):
+                    return getattr(module, strategy_name)
+
+        raise ValueError(f"Strategy '{strategy_name}' not found in {strategies_folder} folder.")
 
     def add_data(self, symbols, timeframes):
         """
@@ -73,15 +103,15 @@ class Backtester:
         print(f"Results saved to {filename}")
 
 if __name__ == "__main__":
-    # Example usage with a sample strategy
-    #from strategies.sample_strategy import SampleStrategy
-
     # Define pairs and timeframes
     symbols = ["BTC/USDT", "ETH/USDT"]
     timeframes = ["15m", "1h"]
 
+    # Specify the strategy class name (e.g., 'SampleStrategy')
+    strategy_name = "SampleStrategy"
+
     # Initialize backtester
-    backtester = Backtester(strategy=strategies.SampleStrategy, cash=1000, commission=0.001)
+    backtester = Backtester(strategy_name=strategy_name, cash=1000, commission=0.001)
 
     # Add data and configure
     backtester.add_data(symbols, timeframes)
