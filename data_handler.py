@@ -9,8 +9,8 @@ import os
 
 # Initialize exchange connection
 exchange = ccxt.mexc({
-    'apiKey': config.APIS["MEXC"]["key"],
-    'secret': config.APIS["MEXC"]["pass"],
+    'Key': config.APIS["MEXC"]["key"],
+    'pass': config.APIS["MEXC"]["pass"],
     'enableRateLimit': True,
     'options': {
         'defaultType': 'spot'  # Ensures spot mode is active
