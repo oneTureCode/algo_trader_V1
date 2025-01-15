@@ -4,7 +4,7 @@ class QuickFlipStrategy(bt.Strategy):
     params = (
         ('risk_appetite', 0.1),  # Risk per trade
         ('trade_fee', 0.001),  # Trading fee
-        ('ema_short', 10),  # Short EMA period
+        ('ema_short', 21),  # Short EMA period
         ('ema_long', 50),  # Long EMA period
         ('rsi_period', 14),  # RSI period
         ('atr_period', 14),  # ATR period

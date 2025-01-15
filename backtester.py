@@ -17,10 +17,13 @@ class Backtester:
         :param commission: The commission for trades.
         """
         self.strategy_name = strategy_name
+        self.timeframe = timeframes
+        self.symbols = symbols
         self.cash = cash
         self.commission = commission
         self.cerebro = bt.Cerebro()
         self.strategy = self.load_strategy(strategy_name)
+        self.results = None  # To store the results after the backtest
 
     @staticmethod
     def load_strategy(strategy_name):
@@ -66,12 +69,17 @@ class Backtester:
         self.cerebro.broker.setcommission(commission=self.commission)
         self.cerebro.addstrategy(self.strategy)
 
+        # Add analyzers
+        self.cerebro.addanalyzer(bt.analyzers.SharpeRatio, _name='sharpe')
+        self.cerebro.addanalyzer(bt.analyzers.DrawDown, _name='drawdown')
+        self.cerebro.addanalyzer(bt.analyzers.TradeAnalyzer, _name='tradeanalyzer')
+
     def run(self):
         """
         Run the backtest and save results.
         """
         print("Starting portfolio value:", self.cerebro.broker.getvalue())
-        self.cerebro.run()
+        self.results = self.cerebro.run()
         print("Ending portfolio value:", self.cerebro.broker.getvalue())
 
         # Save results with a timestamp
@@ -89,22 +97,62 @@ class Backtester:
             os.makedirs(results_dir)
 
         timestamp = datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
+
         filename = f"{results_dir}/backtest_results_{timestamp}.csv"
 
-        # Assuming the broker's portfolio value is what we want to track
-        portfolio_value = self.cerebro.broker.getvalue()
-        results = {
-            "timestamp": [timestamp],
-            "portfolio_value": [portfolio_value],
-        }
+        # Extract metrics from analyzers
+        metrics = []
+        for strat in self.results:
+            sharpe = strat.analyzers.sharpe.get_analysis().get('sharperatio', None)
+            drawdown = strat.analyzers.drawdown.get_analysis()
+            trades = strat.analyzers.tradeanalyzer.get_analysis()
 
-        results_df = pd.DataFrame(results)
+            # Safely access the trade data
+            total_trades = trades.get('total', {}).get('total', 0)
+            winning_trades = trades.get('won', {}).get('total', 0)
+            losing_trades = trades.get('lost', {}).get('total', 0)
+            win_rate = (winning_trades / total_trades) * 100 if total_trades > 0 else 0
+
+            # Handle profit factor calculation (check if losses exist)
+            profit_factor = None
+            won_pnl = trades.get('won', {}).get('pnl', {}).get('gross', 0)
+            lost_pnl = trades.get('lost', {}).get('pnl', {}).get('gross', 0)
+
+            if lost_pnl != 0:
+                profit_factor = won_pnl / abs(lost_pnl)
+            elif won_pnl > 0:  # If no losses but there are winning trades
+                profit_factor = float('inf')  # Infinite profit factor (perfect scenario)
+
+            avg_trade_duration = trades.get('len', {}).get('average', None)
+            drawdown_duration = drawdown.get('max', {}).get('len', 0)
+            volatility = strat.analyzers.sharpe.get_analysis().get('stddev', None)
+
+            metrics.append({
+                "timestamp": timestamp,
+                "strategy": self.strategy_name,
+                "tmieframe": self.timeframe,
+                "symbol": self.symbols,
+                "final_portfolio_value": self.cerebro.broker.getvalue(),
+                "sharpe_ratio": sharpe,
+                "max_drawdown": drawdown.get('max', {}).get('drawdown', None),
+                "drawdown_duration": drawdown_duration,
+                "volatility": volatility,
+                "total_trades": total_trades,
+                "winning_trades": winning_trades,
+                "losing_trades": losing_trades,
+                "win_rate": win_rate,
+                "avg_trade_duration": avg_trade_duration,
+                "profit_factor": profit_factor,
+            })
+        # Save metrics to CSV
+        results_df = pd.DataFrame(metrics)
         results_df.to_csv(filename, index=False)
         print(f"Results saved to {filename}")
+        
 
 if __name__ == "__main__":
     # Define pairs and timeframes
-    symbols = ["BTC/USDT","XRP_USDT"]
+    symbols = ["BTC/USDT"]
     timeframes = ["15m"]
 
     # Specify the strategy class name (e.g., 'SampleStrategy')
