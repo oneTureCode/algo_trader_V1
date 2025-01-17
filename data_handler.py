@@ -354,14 +354,14 @@ if __name__ == "__main__":
     )
 """
     # Step 4: Fetch and save historical data for selected symbols
-    timeframe = '15m'  # Example timeframe
+    timeframe = "1h"  # Example timeframe
    
     selected_symbols = [
-    "BTC/USDT", "ETH/USDT", "BNB/USDT", "SOL/USDT", "XRP/USDT"
+    "BTC/USDT", "ETH/USDT", "BNB/USDT", "SOL/USDT", "XRP/USDT","APT/USDT","TON/USDT","MXNA/USDT","TRX/USDT","DVA/USDT"
 ]
     for symbol in selected_symbols:
         print(f"Fetching data for {symbol} with timeframe {timeframe}...")
-        data = fetch_historical_data(symbol, timeframe=timeframe, days=30)
+        data = fetch_historical_data(symbol, timeframe=timeframe, days=90)
         if data is not None and not data.empty:
             save_data_to_csv(data, symbol, timeframe)
 

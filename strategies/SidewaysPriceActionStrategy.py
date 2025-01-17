@@ -1,7 +1,8 @@
+# strategies/
 import backtrader as bt
 
 class SidewaysPriceActionStrategy(bt.Strategy):
-    params = (('ma_period', 20), ('range_buffer', 0.01))
+    params = (('ma_period', 50), ('range_buffer', 0.01))
 
     def __init__(self):
         self.ma = bt.indicators.SimpleMovingAverage(self.data.close, period=self.params.ma_period)

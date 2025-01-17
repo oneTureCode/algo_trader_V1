@@ -1,7 +1,7 @@
 import backtrader as bt
 
 class FibonacciRetracementStrategy(bt.Strategy):
-    params = (('short_ma_period', 20), ('long_ma_period', 50), ('fib_levels', [0.236, 0.382, 0.5, 0.618]))
+    params = (('short_ma_period', 21), ('long_ma_period', 50), ('fib_levels', [0.236, 0.382, 0.5, 0.618]))
 
     def __init__(self):
         self.short_ma = bt.indicators.SimpleMovingAverage(self.data.close, period=self.params.short_ma_period)

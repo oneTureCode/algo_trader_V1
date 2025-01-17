@@ -1,7 +1,7 @@
 import backtrader as bt
 
 class LiquidityHuntingStrategy(bt.Strategy):
-    params = (('liquidity_period', 20), ('buffer', 0.005))
+    params = (('liquidity_period', 10), ('buffer', 0.05))
 
     def __init__(self):
         self.highest_high = bt.indicators.Highest(self.data.high, period=self.params.liquidity_period)

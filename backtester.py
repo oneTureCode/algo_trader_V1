@@ -130,7 +130,7 @@ class Backtester:
             metrics.append({
                 "timestamp": timestamp,
                 "strategy": self.strategy_name,
-                "tmieframe": self.timeframe,
+                "timeframe": self.timeframe,
                 "symbol": self.symbols,
                 "final_portfolio_value": self.cerebro.broker.getvalue(),
                 "sharpe_ratio": sharpe,
@@ -152,14 +152,14 @@ class Backtester:
 
 if __name__ == "__main__":
     # Define pairs and timeframes
-    symbols = ["BTC/USDT"]
-    timeframes = ["15m"]
+    symbols = ["XRP/USDT"]
+    timeframes = ["30m"]
 
     # Specify the strategy class name (e.g., 'SampleStrategy')
-    strategy_name = "QuickFlipStrategy"
+    strategy_name = "SpotDayTradingStrategy"
 
     # Initialize backtester
-    backtester = Backtester(strategy_name=strategy_name, cash=1000, commission=0.003)
+    backtester = Backtester(strategy_name=strategy_name, cash=15, commission=0.001)
 
     # Add data and configure
     backtester.add_data(symbols, timeframes)

@@ -1,0 +1,2 @@
+timestamp,strategy,timeframe,symbol,final_portfolio_value,sharpe_ratio,max_drawdown,drawdown_duration,volatility,total_trades,winning_trades,losing_trades,win_rate,avg_trade_duration,profit_factor
+2025-01-16_16-13-02,SpotDayTradingStrategy,['30m'],['XRP/USDT'],16.816182299999987,2.400753486285374,5.690074844390128,1767,,75,38,36,50.66666666666667,50.62162162162162,
