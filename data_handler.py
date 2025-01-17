@@ -168,15 +168,17 @@ if __name__ == "__main__":
     get_available_symbols()
 
     # Step 3: Fetch and save historical data for selected symbols
-    timeframe = "1h"
+    timeframes = ["1d", "4h"]  # Correct variable name for clarity
     selected_symbols = [
-        "BTC/USDT", "ETH/USDT", "BNB/USDT", "SOL/USDT", "XRP/USDT"
+        "BTC/USDT", "ETH/USDT", "BNB/USDT", "SOL/USDT", "XRP/USDT","APT/USDT","TRX/USDT","TON/USDT"
     ]
+
     for symbol in selected_symbols:
-        print(f"Fetching data for {symbol} with timeframe {timeframe}...")
-        data = fetch_historical_data(symbol, timeframe=timeframe, days=90)
-        if data is not None and not data.empty:
-            save_data_to_csv(data, symbol, timeframe)
+        for timeframe in timeframes:  # Loop through each timeframe
+            print(f"Fetching data for {symbol} with timeframe {timeframe}...")
+            data = fetch_historical_data(symbol, timeframe=timeframe, days=180)
+            if data is not None and not data.empty:
+                save_data_to_csv(data, symbol, timeframe)
 
     # Step 4: Start live data streams
-    start_live_data_stream(selected_symbols)
+    #start_live_data_stream(selected_symbols)
