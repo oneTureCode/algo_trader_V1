@@ -1,0 +1,2 @@
+timestamp,strategy,timeframe,symbol,final_portfolio_value,sharpe_ratio,max_drawdown,drawdown_duration,volatility,total_trades,winning_trades,losing_trades,win_rate,avg_trade_duration,profit_factor
+2025-01-18_15-34-18,FibonacciRetracementStrategy,['30m'],['XRP/USDT'],3.768618800000006,-6.126319723478384,75.20550720005158,3541,,1,0,0,0.0,,

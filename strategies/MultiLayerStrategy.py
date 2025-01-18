@@ -1,6 +1,6 @@
 import backtrader as bt
 
-class MultiLayerStrategy(bt.Strategy):
+class MultiLayerStrategy_V1(bt.Strategy):
     params = (
         ('vwap_period', 50),  # VWAP period
         ('volume_sma_period', 20),  # Volume SMA period

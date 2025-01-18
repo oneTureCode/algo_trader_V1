@@ -165,12 +165,12 @@ class Optimizer:
 if __name__ == "__main__":
     # Define the parameter ranges for optimization
     param_ranges = {
-        'ema_short_period': range(10, 30, 2),
-        'ema_long_period': range(40, 80, 2),
-        'rsi_lower': range(10, 40, 5),
-        'rsi_upper': range(30, 80, 5),
-        'macd_fast': range(5, 50, 5),
-        'macd_slow': range(5, 80, 5),
+        'ema_short_period': range(10, 30, 5),
+        'ema_long_period': range(40, 70, 10),
+        'rsi_lower': range(20, 40, 5),
+        'rsi_upper': range(60, 80, 5),
+        'macd_fast': range(9, 30, 5),
+        'macd_slow': range(14, 60, 5),
         'macd_signal': range(9, 30, 5)
     }
 
