@@ -1,0 +1,2 @@
+timestamp,strategy,timeframe,symbol,final_portfolio_value,sharpe_ratio,max_drawdown,drawdown_duration,volatility,total_trades,winning_trades,losing_trades,win_rate,avg_trade_duration,profit_factor
+2025-01-19_12-23-36,SpotDayTradingStrategy,['1h'],['TRX/USDT'],7.964721210951151,-0.5491799022376458,50.14312962562996,1718,,26,9,17,34.61538461538461,29.03846153846154,

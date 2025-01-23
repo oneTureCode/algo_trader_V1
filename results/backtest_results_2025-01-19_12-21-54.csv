@@ -1,0 +1,2 @@
+timestamp,strategy,timeframe,symbol,final_portfolio_value,sharpe_ratio,max_drawdown,drawdown_duration,volatility,total_trades,winning_trades,losing_trades,win_rate,avg_trade_duration,profit_factor
+2025-01-19_12-21-54,SpotDayTradingStrategy,['1h'],['ETH/USDT'],9.884481310689715,-0.3386668897925554,33.836887007303446,1744,,25,11,14,44.0,28.4,

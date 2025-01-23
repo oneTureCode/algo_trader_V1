@@ -1,0 +1,2 @@
+timestamp,strategy,timeframe,symbol,final_portfolio_value,sharpe_ratio,max_drawdown,drawdown_duration,volatility,total_trades,winning_trades,losing_trades,win_rate,avg_trade_duration,profit_factor
+2025-01-19_12-24-52,SpotDayTradingStrategy,['1h'],['APT/USDT'],11.57573257362677,0.5031479352670563,35.79332463053818,1574,,38,16,22,42.10526315789473,30.210526315789473,

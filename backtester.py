@@ -153,13 +153,13 @@ class Backtester:
 if __name__ == "__main__":
     # Define pairs and timeframes
     symbols = ["XRP/USDT"]
-    timeframes = ["30m"]
+    timeframes = ["30M"]
 
     # Specify the strategy class name (e.g., 'SampleStrategy')
-    strategy_name = "MultiLayerStrategy_V2"
+    strategy_name = "MultiLayerStrategy_v2"
 
     # Initialize backtester
-    backtester = Backtester(strategy_name=strategy_name, cash=15, commission=0.001)
+    backtester = Backtester(strategy_name=strategy_name, cash=10, commission=0.001)
 
     # Add data and configure
     backtester.add_data(symbols, timeframes)

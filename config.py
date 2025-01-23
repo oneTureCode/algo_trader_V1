@@ -1,3 +1,5 @@
+# config.py
+
 # General Settings
 GENERAL_SETTINGS = {
     "log_level": "DEBUG",  # Options: DEBUG, INFO, WARNING, ERROR, CRITICAL

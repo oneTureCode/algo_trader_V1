@@ -1,0 +1,2 @@
+timestamp,strategy,timeframe,symbol,final_portfolio_value,sharpe_ratio,max_drawdown,drawdown_duration,volatility,total_trades,winning_trades,losing_trades,win_rate,avg_trade_duration,profit_factor
+2025-01-19_12-14-33,SpotDayTradingStrategy,['15M'],['SOL/USDT'],4.361814097443412,-1.0360348735453195,78.45930992273209,8548,,113,42,71,37.16814159292036,26.513274336283185,

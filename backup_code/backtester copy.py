@@ -176,7 +176,7 @@ if __name__ == "__main__":
     timeframes = ["15m"]
 
     # Specify the strategy class name (e.g., 'SampleStrategy')
-    strategy_name = "QuickFlipStrategy"
+    strategy_name = "class SpotDayTradingStrategy"
 
     # Initialize backtester
     backtester = Backtester(strategy_name=strategy_name, cash=100, commission=0.002)

@@ -1,0 +1,2 @@
+timestamp,strategy,timeframe,symbol,final_portfolio_value,sharpe_ratio,max_drawdown,drawdown_duration,volatility,total_trades,winning_trades,losing_trades,win_rate,avg_trade_duration,profit_factor
+2025-01-19_12-21-26,SpotDayTradingStrategy,['1h'],['BTC/USDT'],6.759874723139769,-2.085313546681831,34.92590585370198,2036,,21,8,13,38.095238095238095,28.19047619047619,

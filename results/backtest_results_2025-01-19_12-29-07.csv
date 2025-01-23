@@ -1,0 +1,2 @@
+timestamp,strategy,timeframe,symbol,final_portfolio_value,sharpe_ratio,max_drawdown,drawdown_duration,volatility,total_trades,winning_trades,losing_trades,win_rate,avg_trade_duration,profit_factor
+2025-01-19_12-29-07,SpotDayTradingStrategy,['15M'],['BNB/USDT'],5.847874963126407,-9.17878862502657,44.86890496060072,8486,,37,15,22,40.54054054054054,46.189189189189186,

@@ -1,0 +1,2 @@
+timestamp,strategy,timeframe,symbol,final_portfolio_value,sharpe_ratio,max_drawdown,drawdown_duration,volatility,total_trades,winning_trades,losing_trades,win_rate,avg_trade_duration,profit_factor
+2025-01-19_12-15-49,SpotDayTradingStrategy,['1H'],['TON/USDT'],20.012595174704817,0.6265839664826506,16.65203548361056,826,,28,15,13,53.57142857142857,25.142857142857142,
